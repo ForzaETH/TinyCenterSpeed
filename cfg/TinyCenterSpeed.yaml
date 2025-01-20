@@ -1,0 +1,17 @@
+
+TinyCenterSpeed:
+  using_centerspeed: True
+  rate: 40
+  image_size: 64
+  pixel_size: 0.1
+  boundary_inflation: 0.1
+  feature_size: 3
+  num_opponents: 1
+  using_raceline: True
+  visualize: False
+  using_coral: False
+  dense: True 
+  quantize: False
+  publish_cartesian: False
+  publish_foxglove: False
+

@@ -1,0 +1,11 @@
+<launch>
+    <param name="/TinyCenterSpeed/using_centerspeed" value="true" type="bool"/>
+    <param name="/TinyCenterSpeed/tracking" value="true" type="bool"/>
+    <rosparam command="load" file="$(find tcs)/cfg/opponent_tracker.yaml" />  
+    <rosparam command="load" file="$(find tcs)/cfg/TinyCenterSpeed.yaml" /> 
+    <arg name="var_vs" default="2"/> <!-- var_of vs-->
+    <arg name="var_vd" default="8"/> <!-- var_of vs-->
+    <node pkg="tcs" type="CenterSpeed_inference.py" name="CenterSpeed" output="screen"/>
+    <node pkg="tcs" type="CenterSpeed_tracking.py" name="Tracking" output="screen" />
+    <node pkg="tcs" type="dynamic_tracker_server.py" name="dynamic_tracker_server" output="screen" />
+</launch>

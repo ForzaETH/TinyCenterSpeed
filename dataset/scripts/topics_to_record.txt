@@ -1,0 +1,11 @@
+/opp/car_state/odom
+/opp/car_state/odom_frenet
+/car_state/odom
+/car_state/odom_frenet
+/car_state/pose
+/lap_data
+/scan
+/tf
+/tf_static
+/map
+/global_waypoints

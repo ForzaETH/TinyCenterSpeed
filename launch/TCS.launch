@@ -1,0 +1,8 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+      <param name="/TinyCenterSpeed/using_centerspeed" value="true" type="bool"/>
+      <param name="/TinyCenterSpeed/tracking" value="false" type="bool"/>
+      <rosparam command="load" file="$(find tcs)/cfg/TinyCenterSpeed.yaml" /> 
+      <node pkg="tcs" type="CenterSpeed_inference.py" name="CenterSpeed" output="screen"/>
+  </launch>
+  

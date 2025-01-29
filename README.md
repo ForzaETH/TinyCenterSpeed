@@ -45,8 +45,9 @@ rosbag play <path_to_bag>
 ```
 
 Running inference is as simple as launching the node with one of the provided launchfiles, either with or withouth tracking using a Kalman Filter.
-> [!CAUTION] Remember to adapt the number of detectable opponents in the cfg. Setting the number too high will have no bad effect.
-> 
+
+⚠️Remember to adapt the number of detectable opponents in the cfg. Setting the number too high will have no bad effect.⚠️
+
 ```
 roslaunch tcs TCS.launch or roslaunch tcs TCS_tracking.launch
 ```

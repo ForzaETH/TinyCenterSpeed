@@ -8,5 +8,5 @@ These are the launchfiles for TinyCenterSpeed.
 ## Usage: 
 
 ```
-roslaunch TCS/TCS_tracking.launch
+roslaunch tcs TCS/TCS_tracking.launch
 ```

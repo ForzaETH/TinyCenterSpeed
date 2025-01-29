@@ -9,7 +9,7 @@ This part of the perception package provides a pipeline for converting data from
 The class extracts data such as ground-truth positions and velocities as well as laser-scans from a Rosbag. The scans are additionally verified through the adaptive breakpoint method. From observation it seems that the detected positions are more accurate, while the GT-positions from the Rosbag are more stable. The class uses this property to build a more precise dataset, combining these two methods together with manual inspection.
 If the two GT's diverge too much, a window is launched, where the user can choose to either use the detected GT, the GT from the bag or place a point on the plot manually. An example from the user interface is shown below.
 
-![Dataset UI](../images/dataset_builder.png)
+![Dataset UI](../images/Dataset_builder.png)
 
 
 ## Prerequisites
@@ -40,20 +40,24 @@ perception/
 ```
 
 ### Build the CSV file
-Run `rosrun perception dataset.py` with the following arguments:
+Run `rosrun tcs dataset.py` with the following arguments:
 ```yaml
 --bag (str): the filename of the bag
 --output (str): the output filename for the csv file, default is bag_name.csv
 --start (int): the start time in seconds when the bag should be parsed
 --end (int): the end time in seconds when the bag should be parsed
---correct (bool): wether the data should be corrected
---speedy (bool): enables speed mode for manual placement
---only_gt (bool): only chooses the gt values transmitted from the opponent
+--correct: enables the correction ability 
+--speedy: enables speed mode for manual placement
+--only_gt: only chooses the gt values transmitted from the opponent
 
 Example:
 
-rosrun perception dataset.py --bag test.bag --output test.csv --start 0 --end 1 --correct True --speedy False --only_gt False
+rosrun tcs dataset.py --bag test.bag --output test.csv --start 0 --end 1 --correct --speedy --only_gt
 ```
+
+[!> [!WARNING]
+Starting at time 0 might lead to errors if the transforms in the bag are not present yet. In that case just set it slightly higher than 0.
+> ]
 
 The CSV file will be stored under `CURRENT_DIR/dataset_output/OUTPUT_NAME.csv`
 

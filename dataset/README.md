@@ -54,13 +54,7 @@ Example:
 
 rosrun tcs dataset.py --bag test.bag --output test.csv --start 0 --end 1 --correct --speedy --only_gt
 ```
-
-[!> [!WARNING]
-Starting at time 0 might lead to errors if the transforms in the bag are not present yet. In that case just set it slightly higher than 0.
-> ]
-
 The CSV file will be stored under `CURRENT_DIR/dataset_output/OUTPUT_NAME.csv`
-
 
 ### Use the PyTorch Dataset
 

@@ -1,7 +1,6 @@
 # TinyCenterSpeed
 [![arXiv](https://img.shields.io/badge/arXiv-xxxx.xxxxx-b31b1b.svg)](https://arxiv.org/abs/xxxx.xxxxx)
 ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
-![GitHub Stars](https://img.shields.io/github/stars/username/repo.svg?style=social)
 
 
 This module implements __TinyCenterSpeed__. A lightweight adaptation of state-of-the art machine learning algorithms for object detection. The module is implemented as part of the *ForzaETH* race-stack. 
@@ -37,7 +36,8 @@ Running inference requires the following data to be available in the form of ROS
 /car_state/odom_frenet
 /dynamic_tracker_server/parameter_updates
 ```
-To easily try TinyCenterSpeed, launch one of the example Rosbags (TODO Link).
+To easily try TinyCenterSpeed, launch one of the example Rosbags available [here](https://drive.google.com/drive/folders/1hZCZDIbE9WW18jJVNv3GZEZ9zcEqLSpz?usp=drive_link).
+
 Play the bag with:
 
 ```
@@ -45,8 +45,10 @@ rosbag play <path_to_bag>
 ```
 
 Running inference is as simple as launching the node with one of the provided launchfiles, either with or withouth tracking using a Kalman Filter.
+> [!CAUTION] Remember to adapt the number of detectable opponents in the cfg. Setting the number too high will have no bad effect.
+> 
 ```
-roslaunch TCS.launch or roslaunch TCS_tracking.launch
+roslaunch tcs TCS.launch or roslaunch tcs TCS_tracking.launch
 ```
 Launch a visualisation tool like RVIZ or Foxglove. To see the results, viusalize the topics */perception/obstacles_markers_new*, */map*, */scan*.
 

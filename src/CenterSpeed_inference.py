@@ -472,7 +472,7 @@ class CenterSpeed_Inference :
                 self.net = CenterSpeedModular(image_size=self.image_size)
 
             if version == 2: #CenterSpeed 2.0
-                self.model_path = os.path.join(base_path, 'trained_models/CenterSpeedDense.pt')
+                self.model_path = os.path.join(base_path, 'trained_models/TinyCenterSpeed.pt')
                 self.net = CenterSpeedDenseResidual(image_size=self.image_size)
             else:
                 self.net = CenterSpeedModular(image_size=self.image_size)
@@ -822,7 +822,6 @@ class CenterSpeed_Inference :
         Differs from main_v1 in the way the output is processed.
         """
         preprocessed_scans = torch.cat([self.frame1, self.frame2], dim=0)
-        plt.imshow(preprocessed_scans[0])
         plt.show()
         output = self.inference(preprocessed_scans)
         if not self.using_coral:
@@ -830,7 +829,6 @@ class CenterSpeed_Inference :
         else:
             output= output.squeeze(0)
             output = torch.permute(output, (2,0,1))
-        plt.imshow(output[0])
         plt.show()
         y_ind,x_ind = self.find_k_peaks(output[0], self.num_opponents, 0.5, return_cartesian=False)
         if x_ind is not None:

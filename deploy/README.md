@@ -10,8 +10,7 @@ Follow the instructions in a jupyternotebook in a fresh environment (google cola
 A finished colab notebook can be found [here](https://colab.research.google.com/drive/15uAhoY2QU4C7gMnQ3wsF_kgiKIH3B1om?usp=sharing).
 
 *Environment Setup*
-```ipynb
-
+```py
 !sudo add-apt-repository -y ppa:deadsnakes/ppa
 !sudo apt-get -y update
 !sudo apt-get -y install python3.9
@@ -41,19 +40,19 @@ A finished colab notebook can be found [here](https://colab.research.google.com/
 ```
 
 *Convert your model*
-```ipynb
+```python
 !onnx2tf -i <path_to_onnx_model>
 ```
 
 *Compile for EdgeTPU*
-```ipynb
+```python
 !echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
 !curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 !sudo apt-get update
 !sudo apt-get install edgetpu-compiler
 ```
 
-```ipynb
+```python
 !edgetpu_compiler saved_model/<name_of_tf_model>.tflite
 ```
 

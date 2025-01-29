@@ -37,10 +37,18 @@ Running inference requires the following data to be available in the form of ROS
 /car_state/odom_frenet
 /dynamic_tracker_server/parameter_updates
 ```
+To easily try TinyCenterSpeed, launch one of the example Rosbags (TODO Link).
+Play the bag with:
+
+```
+rosbag play <path_to_bag>
+```
+
 Running inference is as simple as launching the node with one of the provided launchfiles, either with or withouth tracking using a Kalman Filter.
 ```
 roslaunch TCS.launch or roslaunch TCS_tracking.launch
 ```
+Launch a visualisation tool like RVIZ or Foxglove. To see the results, viusalize the topics */perception/obstacles_markers_new*, */map*, */scan*.
 
 As part of the ForzaETH Race Stack, TinyCenterSpeed can also be run integrated in the Head-to-head mode.
 Please refer to the Race Stack for detailed usage. 

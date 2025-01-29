@@ -6,7 +6,6 @@ import math
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Button
-import time
 import os
 import argparse
 
@@ -56,7 +55,7 @@ class Detect(RosbagDataset):
         rospy.on_shutdown(self.shutdown)
 
         # --- Tunable params ---
-        #TODO: what are these parameters?
+        #TODO: tune these paramters for better performance of the ABD?
         #Not used because algo is offline:self.rate = 1#rospy.get_param("/detect/rate")
         self.lambda_angle = 10#rospy.get_param("/detect/lambda")*math.pi/180
         self.sigma = 0.03#rospy.get_param("/detect/sigma")
@@ -98,7 +97,9 @@ class Detect(RosbagDataset):
         self.only_gt = only_gt if only_gt is not None else False #True if you want to use only the GT-positions
 
     def shutdown(self):
-        rospy.logwarn('Detect is shutdown')
+        rospy.logwarn('Dataset is shutdown')
+        plt.close("all")
+        os._exit(0) #TODO make this less aggressive
 
     def laserPointOnTrack (self, s, d):
         # this old version could not detect obstacles on the side/behind
@@ -349,16 +350,19 @@ class Detect(RosbagDataset):
         axcoose_next = self.fig.add_axes([0.8, 0.01, 0.1, 0.075])
         axchoose_discard = self.fig.add_axes([0.2, 0.01, 0.1, 0.075])
         axchoose_save = self.fig.add_axes([0.0, 0.01, 0.1, 0.075])
+        axchoose_exit = self.fig.add_axes([0.0, 0.9, 0.1, 0.075])
         btn_choose_gt = Button(axchoose_gt, 'GT')
         btn_choose_det = Button(axchoose_det, 'DET')
         btn_choose_next = Button(axcoose_next, 'Next')
         btn_discard = Button(axchoose_discard, 'Discard')
         btn_save = Button(axchoose_save, 'Save')
+        btn_exit = Button(axchoose_exit, 'Exit')
         btn_choose_gt.on_clicked(self.choose_gt_position)
         btn_choose_det.on_clicked(self.choose_det_position)
         btn_choose_next.on_clicked(self.next_scan)
         btn_discard.on_clicked(self.discard)
         btn_save.on_clicked(self.save)
+        btn_exit.on_clicked(self.exit)
         self.fig.canvas.mpl_connect('button_press_event', self.on_click)
         self.plot_scan(i)
 
@@ -439,6 +443,12 @@ class Detect(RosbagDataset):
             self.dataset_creator_corrected()
             self.write_csv()
 
+    def exit(self,event):
+        '''
+        Callback function for exit button on interactive plot.
+        '''
+        if not self.final:
+            self.shutdown()
 
     def update_plot(self):
         '''
@@ -581,9 +591,9 @@ if __name__ == '__main__':
     parser.add_argument("--output", type=str, help="Path to the output csv file")
     parser.add_argument("--start", type=int, help="Start time in the rosbag")
     parser.add_argument("--end", type=int, help="End time in the rosbag")
-    parser.add_argument("--correct", type=bool, help="Correct the positions")
-    parser.add_argument("--speedy", type=bool, help="Speedy mode")
-    parser.add_argument("--only_gt", type=bool, help="Use only GT-positions")
+    parser.add_argument("--correct", help="Correct the positions", action="store_true")
+    parser.add_argument("--speedy", help="Speedy mode", action="store_true")
+    parser.add_argument("--only_gt", help="Use only GT-positions", action="store_true")
     args = parser.parse_args()
 
     if args.bag is None:
@@ -602,6 +612,7 @@ if __name__ == '__main__':
     if os.path.exists(output_csv_path):
         print("[Dataset Creator]: Output file already exists! Please delete or rename it!")
         exit()
+    print("onlyGT: " , args.only_gt )
     corrector = Detect(args.bag, output_csv_path, args.start, args.end, args.correct, args.speedy, args.only_gt)
     corrector.process_bag()
     corrector.positions()

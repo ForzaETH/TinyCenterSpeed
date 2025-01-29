@@ -78,12 +78,12 @@ class RosbagDataset:
 
         laser_scan_sync = None
         car_state_pose_sync = None
+        opp_car_state_pose_sync = None
+        opp_car_state_frenet_sync = None
         initial_time = None
         time_offset = 0
         opp_time_offset = None
         ego_time_offset = None
-        i =0
-        boundary = None
 
         lasertimes_arr = np.arange(self.start,self.end, 0.025)#Used to controll the size of the dataset, 0.025  for the 40Hz lidar
         all_laser_point = []
@@ -149,6 +149,9 @@ class RosbagDataset:
             # get relative time in milliseconds
             cur_t = (t - initial_time).to_sec() * 1000 - time_offset * 1000
             if cur_t/1000>=lasertime:
+                if car_state_pose_sync is None or opp_car_state_pose_sync is None or laser_scan_sync is None or opp_car_frenet_sync is None:
+                    # Timing anomalies
+                    continue
                 car_pos = np.array([car_state_pose_sync.pose.pose.position.x, car_state_pose_sync.pose.pose.position.y])
                 car_positions.append(car_pos)
                 car_speed = np.array([car_state_pose_sync.twist.twist.linear.x, car_state_pose_sync.twist.twist.linear.y])
@@ -159,7 +162,7 @@ class RosbagDataset:
                 car_times.append(car_state_pose_sync.header.stamp.to_sec() + ego_time_offset)
 
                 #opponent stuff
-                opp_car_pos = np.array([0,0])
+                opp_car_pos = np.array([opp_car_state_pose_sync.pose.pose.position.x, opp_car_state_pose_sync.pose.pose.position.y])
 
                 transform_pos = tf_buffer.lookup_transform_core("laser","map",rospy.Time(0))# want the opponents position in the lidar frame
 
@@ -168,8 +171,7 @@ class RosbagDataset:
                 opp_car_pos_lidar = R_pos.apply(np.vstack((opp_car_pos[0], opp_car_pos[1], np.zeros_like(opp_car_pos[0]))).T) + T_pos
                 opp_car_positions.append(opp_car_pos)
                 opp_car_positions_lidar.append(opp_car_pos_lidar)
-                opp_car_rot = Rotation.from_quat(np.array([1, 0, 1, 0]))
-                #-------------Transform Yaw into Ego Frame and Speed calculations-------
+                opp_car_rot = Rotation.from_quat(np.array([opp_car_state_pose_sync.pose.pose.orientation.x, opp_car_state_pose_sync.pose.pose.orientation.y, opp_car_state_pose_sync.pose.pose.orientation.z, opp_car_state_pose_sync.pose.pose.orientation.w]))                #-------------Transform Yaw into Ego Frame and Speed calculations-------
                 opp_car_yaw = (opp_car_rot.as_euler('xyz')[2] - car_yaw) % (2* np.pi)
                 if opp_car_yaw > np.pi:
                     opp_car_yaw -= 2*np.pi
@@ -177,7 +179,7 @@ class RosbagDataset:
                 ROT = np.array([
                     [np.cos(-opp_car_yaw), - np.sin(-opp_car_yaw)],
                     [np.sin(-opp_car_yaw), np.cos(-opp_car_yaw)]])
-                opp_velocity_bl = np.array([0, 0])
+                opp_velocity_bl = np.array([opp_car_state_pose_sync.twist.twist.linear.x, opp_car_state_pose_sync.twist.twist.linear.y])
                 opp_velocity_behind = np.dot(ROT, opp_velocity_bl)
                 opp_car_frenet_sync.append(np.array([0,0,opp_velocity_behind[0], opp_velocity_behind[1], 0]))
                 #-------------------------------------------------

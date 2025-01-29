@@ -9,5 +9,5 @@ TinyCenterSpeed provides:
 * __CenterSpeedDataset__: The dataset used for training TinyCenterSpeed.
 * __validation_set__: A validation set to monitor training progress.
 
-
+All of the datasets and Rosbags can be freely downloaded from [here](https://drive.google.com/drive/folders/1CzWXwncxt6HtNSDTg8RbXdfaRSdgQ_ce?usp=drive_link)
 

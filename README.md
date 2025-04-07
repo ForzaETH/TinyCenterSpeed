@@ -16,7 +16,7 @@ __TinyCenterSpeed__ provides a framework for data generation, preprocessing, tra
 - __Experimental Validation__: Tested on a 1:10 scale autonomous racing platform with a robust comparison to state-of-the-art algorithms.
 
 ## Overview
-* [Dataset](./dataset/): Framework for generating and processing LiDAR data for ML applications with computer-vision. The complete dataset can be found [here](./dataset/data/CenterSpeedDataset/).
+* [Dataset](./dataset/): Framework for generating and processing LiDAR data for ML applications with computer-vision. The complete dataset can be found [here](https://drive.google.com/drive/folders/1J7F0DwQHq2D1mbMrkqY8PqFb8sGw4_mQ?usp=drive_link).
 * [Environments](./environments/): Provides the environments used for training.
 * [Models](./src/models/): The detailed model definitions.
 * [Train](./src/train/): Provides functionality to train the model. Also contains example usage of the dataset pipeline.

@@ -1,0 +1,7 @@
+#Python
+__pycache__
+
+#Data and Rosbags
+dataset/data/CenterSpeedDataset/*
+dataset/data/validation_set.csv
+dataset/data/bags/*

@@ -49,7 +49,11 @@ Running inference is as simple as launching the node with one of the provided la
 ⚠️Remember to adapt the number of detectable opponents in the cfg. Setting the number too high will have no bad effect.⚠️
 
 ```
-roslaunch tcs TCS.launch or roslaunch tcs TCS_tracking.launch
+roslaunch tcs TCS.launch
+```
+or
+```
+roslaunch tcs TCS_tracking.launch
 ```
 Launch a visualisation tool like RVIZ or Foxglove. To see the results, viusalize the topics */perception/obstacles_markers_new*, */map*, */scan*.
 

@@ -142,3 +142,35 @@ lidar,intensities,data = set[0]
 
 ```
 
+# Details
+In the following table the exact hyperparameters for each collection run are listed.
+
+| Name ROSbag                    | Name CSV                       | Date       | m_ego | m_opp | Properties  | Map Name         |
+|-------------------------------|--------------------------------|------------|-------|--------|-------------|------------------|
+| 06_04_Dataset02.bag           | 06_04_Dataset02.csv           | 06.04.2024 | 0.5   | 0.4    | trailing    | 06_04_Dataset02  |
+| 06_04_Dataset02_Front.bag     | 06_04_Dataset02_Front.csv     | 06.04.2024 | 0.4   | 0.4    | free track  | 06_04_Dataset02  |
+| 06_04_Dataset03.bag           | 06_04_Dataset03.csv           | 06.04.2024 | 0.5   | 0.4    | trailing    | 06_04_Dataset03  |
+| 06_04_Dataset03_Front.bag     | 06_04_Dataset03_Front.csv     | 06.04.2024 | 0.4   | 0.4    | free track  | 06_04_Dataset03  |
+| 06_04_Dataset04.bag           | 06_04_Dataset04.csv           | 06.04.2024 | 0.5   | 0.4    | trailing    | 06_04_Dataset04  |
+| 06_04_Dataset04_Front.bag     | 06_04_Dataset04_Front.csv     | 06.04.2024 | 0.4   | 0.4    | free track  | 06_04_Dataset04  |
+| 06_04_Dataset05.bag           | 06_04_Dataset05.csv           | 06.04.2024 | 0.5   | 0.4    | trailing    | 06_04_Dataset05  |
+| 25_04_Dataset01_10s.bag       | 25_04_Dataset01_10s.csv       | 25.04.2024 | 0.5   | 0.4    | trailing    | 25_04_Dataset01  |
+| 25_04_Dataset01_Manual_10s.bag| 25_04_Dataset01_Manual_10s.csv| 25.04.2024 | 0.5   | -      | manual      | 25_04_Dataset01  |
+| 25_04_Dataset01_FTG_10s.bag   | 25_04_Dataset01_FTG_10s.csv   | 25.04.2024 | 0.5   | 0.4    | FTG         | 25_04_Dataset01  |
+| 25_04_Dataset02_10s.bag       | 25_04_Dataset02_10s.csv       | 25.04.2024 | 0.5   | 0.4    | trailing    | 25_04_Dataset02  |
+| 25_04_Dataset02_Manual_10s.bag| 25_04_Dataset02_Manual_10s.csv| 25.04.2024 | 0.5   | -      | manual      | 25_04_Dataset02  |
+| 25_04_Dataset02_FTG_10s.bag   | 25_04_Dataset02_FTG_10s.csv   | 25.04.2024 | 0.5   | 0.4    | FTG         | 25_04_Dataset02  |
+| 25_04_Dataset03_10s.bag       | 25_04_Dataset03_10s.csv       | 25.04.2024 | 0.5   | 0.4    | trailing    | 25_04_Dataset03  |
+| 25_04_Dataset03_Manual_10s.bag| 25_04_Dataset03_Manual_10s.csv| 25.04.2024 | 0.5   | -      | manual      | 25_04_Dataset03  |
+| 25_04_Dataset03_FTG_10s.bag   | 25_04_Dataset03_FTG_10s.csv   | 25.04.2024 | 0.5   | 0.4    | FTG         | 25_04_Dataset03  |
+| 25_04_Dataset04_10s.bag       | 25_04_Dataset04_10s.csv       | 25.04.2024 | 0.5   | 0.4    | trailing    | 25_04_Dataset04  |
+| 25_04_Dataset04_Manual_10s.bag| 25_04_Dataset04_Manual_10s.csv| 25.04.2024 | 0.5   | -      | manual      | 25_04_Dataset04  |
+| 25_04_Dataset04_FTG_10s.bag   | 25_04_Dataset04_FTG_10s.csv   | 25.04.2024 | 0.5   | 0.4    | FTG         | 25_04_Dataset04  |
+| 25_04_Dataset04_Fast_10s.bag  | 25_04_Dataset04_Fast_10s.csv  | 25.04.2024 | 0.6   | 0.5    | FTG         | 25_04_Dataset04  |
+| 16_05_Dataset01.bag           | 16_05_Dataset01.csv           | 16.05.2024 | 0.7   | 0.6    | trailing    | 16_05_Dataset01  |
+| 16_05_Dataset02.bag           | 16_05_Dataset02.csv           | 16.05.2024 | 0.3   | 0.2    | trailing    | 16_05_Dataset01  |
+| 16_05_Dataset03.bag           | 16_05_Dataset03.csv           | 16.05.2024 | 0.5   | 0.4    | trailing    | 16_05_Dataset01  |
+| 16_05_Dataset04.bag           | 16_05_Dataset04.csv           | 16.05.2024 | 0.7   | 0.6    | trailing    | 16_05_Dataset02  |
+| 16_05_Dataset05.bag           | 16_05_Dataset05.csv           | 16.05.2024 | 0.3   | 0.2    | trailing    | 16_05_Dataset02  |
+
+This table contains detailed information and metadata about the \acrshort{ros}-bags and corresponding CSV files used to train *TinyCenterSpeed*. $m_{ego}$ and $m_{opp}$ correspond to the velocity multipliers for the velocity given by the raceline.

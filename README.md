@@ -66,5 +66,14 @@ In case you found TinyCenterSpeed helpful and want to contribute, please either 
 
 ## Citing TinyCenterSpeed
 If you found TinyCenterSpeed useful in your research, we would appreciate to cite it as follows:
-
-__TODO!!!__
+```
+@misc{reichlin2025tinycenterspeed,
+      title={TinyCenterSpeed: Efficient Center-Based Object Detection for Autonomous Racing}, 
+      author={Neil Reichlin and Nicolas Baumann and Edoardo Ghignone and Michele Magno},
+      year={2025},
+      eprint={2504.08655},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2504.08655}, 
+}
+```
